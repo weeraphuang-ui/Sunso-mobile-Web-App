@@ -1274,6 +1274,7 @@ input:invalid{outline:none!important;box-shadow:none!important;border-color:var(
           <th>ร้าน</th>
           <th>รหัสสัญญา</th>
           <th>ชื่อลูกค้า</th>
+          <th>เบอร์โทร</th>
           <th>รุ่น</th>
           <th>สี</th>
           <th>IMEI</th>
@@ -10646,7 +10647,7 @@ function renderInstallments(){
   const statusF = document.getElementById('ist-status-filter').value;
 
   const filtered = installments.filter(it=>{
-    const txt = (it.contractId+' '+it.customerName+' '+it.brand+' '+it.model+' '+(it.imei||'')+' '+(it.color||'')).toLowerCase();
+    const txt = (it.contractId+' '+it.customerName+' '+it.brand+' '+it.model+' '+(it.imei||'')+' '+(it.color||'')+' '+(it.phone||'')+' '+String(it.phone||'').replace(/\D/g,'')).toLowerCase();
     return txt.includes(q) && (!storeF||it.store===storeF) && (!statusF||it.status===statusF);
   });
 
@@ -10659,7 +10660,7 @@ function renderInstallments(){
 
   const tbody = document.getElementById('install-tbody');
   if(!filtered.length){
-    tbody.innerHTML = `<tr><td colspan="15" style="text-align:center;color:var(--tx3);padding:18px">${installments.length?'ไม่พบรายการที่ตรงกับตัวกรอง':'ยังไม่มีรายการ — กดปุ่ม "Refresh"'}</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="16" style="text-align:center;color:var(--tx3);padding:18px">${installments.length?'ไม่พบรายการที่ตรงกับตัวกรอง':'ยังไม่มีรายการ — กดปุ่ม "Refresh"'}</td></tr>`;
     document.getElementById('install-row-cnt').textContent = installments.length?'ไม่พบรายการ':'ยังไม่มีรายการ';
     return;
   }
@@ -10674,6 +10675,7 @@ function renderInstallments(){
       <td><span class="tg">${it.store}</span></td>
       <td style="font-family:monospace;font-size:11px">${it.contractId}</td>
       <td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${it.customerName}">${it.customerName}</td>
+      <td style="font-size:12px;white-space:nowrap">${it.phone?`<a href="tel:${String(it.phone).replace(/[^\d+]/g,'')}" style="color:var(--ac);text-decoration:none">${spEsc(it.phone)}</a>`:'-'}</td>
       <td style="font-size:12px">${it.brand} ${it.model}</td>
       <td style="font-size:12px;white-space:nowrap">${spEsc(it.color||'-')}</td>
       <td style="font-family:monospace;font-size:11px;white-space:nowrap">${spEsc(it.imei||'-')}</td>

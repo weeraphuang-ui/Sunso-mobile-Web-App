@@ -3,7 +3,7 @@
 //  ★ สำคัญ: เปลี่ยนเลขท้าย CACHE_VERSION ทุกครั้งที่ deploy เวอร์ชันใหม่
 //     (หรือใส่วันที่/เวลาที่ deploy ก็ได้ ขอแค่ไม่ซ้ำของเดิม)
 // ================================================================
-const CACHE_VERSION = 'sunso-v20261112a';
+const CACHE_VERSION = 'sunso-v20261113a';
 const CACHE_NAME = CACHE_VERSION;
 
 const PRECACHE_URLS = [
