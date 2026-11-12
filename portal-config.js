@@ -2,7 +2,7 @@
 // วาง URL ของ Web app (ลงท้าย /exec) ระหว่างเครื่องหมายคำพูด แล้วอัปโหลดไฟล์นี้ขึ้น Netlify
 // ลูกค้าที่ติดตั้งแอปไว้แล้วจะได้ URL ใหม่เองในการเปิดครั้งถัดไป ไม่ต้องติดตั้งใหม่
 window.PORTAL_CONFIG = {
-  api: 'YOUR_APPS_SCRIPT_URL_HERE',
+  api: 'https://script.google.com/macros/s/AKfycbw3W6S3oJcpklhPIstpaKa7sfD02Gxh-kIKx1r4j4K_h7kCHqNM5ewV1nlUn9TwSt8/exec',
   // ข้อมูลติดต่อร้าน แสดงท้ายหน้าแอปลูกค้า (ลบ/ปล่อยว่างรายการที่ไม่ใช้ได้)
   contact: {
     phones: [

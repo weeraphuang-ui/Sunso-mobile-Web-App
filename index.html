@@ -12488,7 +12488,9 @@ function openRepairEdit(idx) {
   document.getElementById('rm-deposit').value     = r.deposit||'0';
   document.getElementById('rm-status').value      = r.status||'รอซ่อม';
   document.getElementById('rm-remark').value      = r.remark||'';
-  document.getElementById('rm-cost').value       = r.costSet?r.cost:'';
+  // ไม่แสดงต้นทุนเดิมบนหน้าจอ (กันพนักงานเห็น) — ถ้าเคยบันทึกแล้ว ช่องจะว่าง ปล่อยว่าง = คงค่าเดิม
+  document.getElementById('rm-cost').value       = '';
+  document.getElementById('rm-cost').placeholder = r.costSet ? '✔ บันทึกต้นทุนแล้ว (ซ่อนไว้) — พิมพ์ตัวเลขใหม่เมื่อต้องการแก้' : '0';
   rmFillRTech_(r.repairTech||'');
   rmCalcBalance();
   const techSel = document.getElementById('rm-tech');
@@ -12575,7 +12577,7 @@ async function saveRepair() {
   const status = document.getElementById('rm-status').value;
   const deposit = deposit0;
   const costTxt = document.getElementById('rm-cost').value.trim();
-  if((status==='ซ่อมเสร็จแล้ว'||status==='ส่งมอบลูกค้าแล้ว') && costTxt===''){ toast('กรุณากรอกต้นทุนซ่อม (ถ้าไม่มีต้นทุนให้ใส่ 0)','err'); document.getElementById('rm-cost').focus(); return; }
+  if((status==='ซ่อมเสร็จแล้ว'||status==='ส่งมอบลูกค้าแล้ว') && costTxt==='' && !(repairEditIdx>=0 && repairJobs[repairEditIdx].costSet)){ toast('กรุณากรอกต้นทุนซ่อม (ถ้าไม่มีต้นทุนให้ใส่ 0)','err'); document.getElementById('rm-cost').focus(); return; }
 
   const payload = {
     action:      repairEditIdx < 0 ? 'addRepair' : 'updateRepair',
