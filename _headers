@@ -1,0 +1,20 @@
+/index.html
+  Cache-Control: no-cache
+
+/sw.js
+  Cache-Control: no-cache
+
+/manifest.json
+  Cache-Control: no-cache
+
+/portal-config.js
+  Cache-Control: no-cache
+
+/customer.html
+  Cache-Control: no-cache
+
+/customer.webmanifest
+  Cache-Control: no-cache
+
+/*
+  Cache-Control: public, max-age=3600
